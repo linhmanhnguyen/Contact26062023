@@ -22,6 +22,7 @@
 		D3E96F232A49F48500AE9608 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E96F212A49F48500AE9608 /* FriendsTableViewCell.swift */; };
 		D3E96F242A49F48500AE9608 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3E96F222A49F48500AE9608 /* FriendsTableViewCell.xib */; };
 		D3E96F2A2A49F5F700AE9608 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E96F292A49F5F700AE9608 /* FriendsViewController.swift */; };
+		D3E96F2C2A4D447E00AE9608 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E96F2B2A4D447E00AE9608 /* AddFriendViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		D3E96F212A49F48500AE9608 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		D3E96F222A49F48500AE9608 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
 		D3E96F292A49F5F700AE9608 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		D3E96F2B2A4D447E00AE9608 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				D3E96F292A49F5F700AE9608 /* FriendsViewController.swift */,
+				D3E96F2B2A4D447E00AE9608 /* AddFriendViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3E96F162A49F07B00AE9608 /* FriendsResponseModel.swift in Sources */,
+				D3E96F2C2A4D447E00AE9608 /* AddFriendViewController.swift in Sources */,
 				D3E96EE32A49EE8400AE9608 /* AppDelegate.swift in Sources */,
 				D3E96EE52A49EE8400AE9608 /* SceneDelegate.swift in Sources */,
 				D3E96F232A49F48500AE9608 /* FriendsTableViewCell.swift in Sources */,

@@ -11,10 +11,12 @@ import Kingfisher
 class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var tblFriends: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
     var friendData: [FriendsResponseModel] = []
     var filteredData: [FriendsResponseModel]!
     var isSearched: Bool = false
     var currentData: FriendsResponseModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tblFriends.dataSource = self
@@ -23,6 +25,18 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         callAPIFriends()
         filteredData = friendData
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        cellAPIGetFriends()
+    }
+    func cellAPIGetFriends() {
+        APIHandler.init().getFriends { friendsResponseData in
+            self.friendData = friendsResponseData
+            self.filteredData = friendsResponseData
+            self.tblFriends.reloadData()
+        }
+    }
+    
     func callAPIFriends(){
         APIHandler.init().getFriends{friendsResponseModel in
             self.friendData = friendsResponseModel
@@ -57,10 +71,34 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         return 100
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        friendData.remove(at: indexPath.row)
-        tblFriends.reloadData()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "AddFriendViewController") as! AddFriendViewController
+        let person = FriendsResponseModel(fullName: "\(friendData[indexPath.row].fullName)",
+                                          nickName: "\(friendData[indexPath.row].nickName)",
+                                          avatar: "\(friendData[indexPath.row].avatar)",
+                                          phoneNumber: "\(friendData[indexPath.row].phoneNumber)",
+                                          id: "\(friendData[indexPath.row].id)")
+        detailVC.person = person
+        navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let friendID = filteredData[indexPath.row].id
+            APIHandler.init().deleteFriend(id: friendID) { success in
+                if success {
+                    print("Xoá bạn thành công")
+                    self.friendData.remove(at: indexPath.row)
+                    self.tblFriends.reloadData()
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    print("Lỗi khi xoá bạn")
+                }
+            }
+        }
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredData = []
         if searchText != ""{
